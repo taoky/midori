@@ -118,8 +118,7 @@ namespace Midori {
             settings.bind_property ("location-entry-search", combo, "active-id", BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL);
             // Generic item for custom search option
             if (combo.get_active_text () == null) {
-                string hostname = new Soup.URI (settings.location_entry_search).host;
-                combo.append (settings.location_entry_search, hostname);
+                combo.append (settings.location_entry_search, settings.search_name(settings.location_entry_search));
                 combo.active_id = settings.location_entry_search;
             }
             box.add (combo);

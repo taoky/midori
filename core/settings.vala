@@ -129,6 +129,22 @@ namespace Midori {
             return uri + escaped;
         }
 
+        public string search_name (string search) {
+            if (search.contains("duckduckgo")) {
+                return "Duck Duck Go";
+            } else if (search.contains("yahoo")) {
+                return "Yahoo";
+            } else if (search.contains("google")) {
+                return "Google";
+            } else if (search.contains("opac.lib.ustc.edu.cn")) {
+                return "图书查询";
+            } else if (search.contains("about:blank")) {
+                return "/dev/null";
+            } else {
+                return new Soup.URI (search).host;
+            }
+        }
+
         // LIIMS env limits outbound internet access
         string default_search = "about:blank?q=%s";
         public string location_entry_search { owned get {

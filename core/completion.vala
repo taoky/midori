@@ -36,7 +36,7 @@ namespace Midori {
         construct {
             var model = new ListStore (typeof (DatabaseItem));
             var settings = CoreSettings.get_default ();
-            model.append (new SuggestionItem.for_input (settings.location_entry_search, _("_Search the Web")));
+            model.append (new SuggestionItem.for_input (settings.location_entry_search, _("_Search ") + settings.search_name(settings.location_entry_search)));
             models.append (model);
 
             try {
