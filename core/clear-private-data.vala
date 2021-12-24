@@ -42,6 +42,12 @@ namespace Midori {
             }
         }
 
+        void extensions_init () {
+            extensions = Plugins.get_default ().plug<ClearPrivateDataActivatable> ("box", history.parent);
+            extensions.extension_added.connect ((info, extension) => { ((ClearPrivateDataActivatable)extension).activate (); });
+            extensions.foreach ((extensions, info, extension) => { extensions.extension_added (info, extension); });
+        }
+
         public override void show () {
             show_cancellable = new Cancellable ();
 
@@ -57,9 +63,7 @@ namespace Midori {
                 debug ("Failed to check history: %s", error.message);
             }
 
-            extensions = Plugins.get_default ().plug<ClearPrivateDataActivatable> ("box", history.parent);
-            extensions.extension_added.connect ((info, extension) => { ((ClearPrivateDataActivatable)extension).activate (); });
-            extensions.foreach ((extensions, info, extension) => { extensions.extension_added (info, extension); });
+            extensions_init ();
 
             base.show ();
         }
@@ -67,6 +71,13 @@ namespace Midori {
         public override void response (int response_id) {
             show_cancellable.cancel ();
             response_async.begin (response_id);
+        }
+
+        public void inactivity_clear () {
+            websitedata.active = true;
+            history.active = true;
+            extensions_init ();
+            response_async.begin (Gtk.ResponseType.OK);
         }
 
         async void response_async (int response_id) {

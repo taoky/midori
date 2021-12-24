@@ -503,6 +503,22 @@ namespace Midori {
                 }
             }
 
+            var browser = active_window as Browser;
+            if (app == "" && inactivity_reset > 0) {
+                // set inactivity reset in normal mode
+                Timeout.add_seconds (inactivity_reset, () => {
+                    if (browser.idle) {
+                        warning ("reset\n");
+                        action_group.activate_action ("tab-close-other", null);
+                        action_group.activate_action ("homepage", null);
+                        action_group.activate_action ("clear-inactivity-private-data", null);
+                    } else {
+                        browser.idle = true;
+                    }
+                    return Source.CONTINUE;
+                }, Priority.LOW);
+            }
+
             release ();
             return  0;
         }

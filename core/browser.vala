@@ -34,6 +34,7 @@ namespace Midori {
             { "compactmenu", compactmenu_activated },
             { "navigationbar", navigationbar_activated },
             { "tab-close", tab_close_activated },
+            { "tab-close-other", tab_close_other_activated },
             { "close", close_activated },
             { "tab-reopen", tab_reopen_activated },
             { "goto", goto_activated },
@@ -46,6 +47,7 @@ namespace Midori {
             { "caret-browsing", caret_browsing_activated },
             { "show-inspector", show_inspector_activated },
             { "clear-private-data", clear_private_data_activated },
+            { "clear-inactivity-private-data", clear_inactivity_private_data_activated },
             { "preferences", preferences_activated },
             { "about", about_activated },
         };
@@ -503,6 +505,14 @@ namespace Midori {
             tab.try_close ();
         }
 
+        void tab_close_other_activated () {
+            foreach (var widget in tabs.get_children ()) {
+                if (widget != tab) {
+                    ((Tab)widget).try_close ();
+                }
+            }
+        }
+
         void close_activated () {
             close ();
         }
@@ -785,6 +795,11 @@ namespace Midori {
 
         void clear_private_data_activated () {
             new ClearPrivateData (this).show ();
+        }
+
+        void clear_inactivity_private_data_activated () {
+            trash.remove_all();
+            new ClearPrivateData (this).inactivity_clear ();
         }
 
         void preferences_activated () {
