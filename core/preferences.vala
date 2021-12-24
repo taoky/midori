@@ -111,9 +111,10 @@ namespace Midori {
 
             box = new LabelWidget (_("Search _with"));
             var combo = new Gtk.ComboBoxText ();
-            combo.append ("https://duckduckgo.com/?q=%s", "Duck Duck Go");
-            combo.append ("http://search.yahoo.com/search?p=", "Yahoo");
-            combo.append ("http://www.google.com/search?q=%s", "Google");
+            //  combo.append ("https://duckduckgo.com/?q=%s", "Duck Duck Go");
+            //  combo.append ("http://search.yahoo.com/search?p=", "Yahoo");
+            //  combo.append ("http://www.google.com/search?q=%s", "Google");
+            combo.append ("about:blank?q=%s", "/dev/null");
             settings.bind_property ("location-entry-search", combo, "active-id", BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL);
             // Generic item for custom search option
             if (combo.get_active_text () == null) {

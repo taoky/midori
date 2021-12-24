@@ -129,7 +129,8 @@ namespace Midori {
             return uri + escaped;
         }
 
-        string default_search = "https://duckduckgo.com/?q=%s";
+        // LIIMS env limits outbound internet access
+        string default_search = "about:blank?q=%s";
         public string location_entry_search { owned get {
             return get_string ("settings", "location-entry-search", default_search);
         } set {
