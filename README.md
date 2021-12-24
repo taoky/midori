@@ -55,10 +55,6 @@ You can also install Midori from [FlatHub](https://flathub.org/apps/details/org.
 
     flatpak install flathub org.midori_browser.Midori
 
-# Installing Midori on Android
-
-You can opt-in for the [beta release on the Play Store](https://play.google.com/apps/testing/org.midori_browser.midori).
-
 # Building from source
 
 **Requirements**
@@ -312,18 +308,6 @@ The following API specification is supported by Midori:
 * **fortress**: user of an ancient release like 0.4.3 as found on Raspberry Pie, Debian, Ubuntu
 * **katze, sokoke, tabby**: legacy API names and coincidentally cat breeds
 * web extension: a cross-browser extension (plugin) - or in a webkit context, the multi-process api
-
-# Midori for Android
-
-The easiest way to build, develop and test Midori on Android is with [Android Studio](https://developer.android.com/studio/#downloads) ([snap](https://snapcraft.io/android-studio)).
-
-When working with the command line, setting `JAVA_HOME` is paramount:
-
-    export JAVA_HOME=/snap/android-studio/current/android-studio/jre/
-
-Afterwards you can run commands like so:
-
-    ./gradlew lint test
 
 # Midori for Windows
 
