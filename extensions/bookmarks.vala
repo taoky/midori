@@ -198,7 +198,8 @@ namespace Bookmarks {
                 return;
             }
 
-            browser.add_button (new Button (browser));
+            // Bookmark func is broken and I think it's better to hide it now.
+            //  browser.add_button (new Button (browser));
         }
     }
 
