@@ -25,6 +25,14 @@ namespace Midori {
         NONE,
     }
 
+    [CCode (cprefix = "MIDORI_WINDOW_")]
+    public enum WindowState {
+        NORMAL,
+        MINIMIZED,
+        MAXIMIZED,
+        FULLSCREEN
+    }
+
     public class CoreSettings : Settings {
         static CoreSettings? _default = null;
 
@@ -58,6 +66,23 @@ namespace Midori {
             return get_string ("settings", "last-window-height", "530").to_int ();
         } set {
             set_string ("settings", "last-window-height", value.to_string ());
+        } }
+
+        public WindowState last_window_state { get {
+            var wstate = get_string ("settings", "last-window-state", "MIDORI_WINDOW_NORMAL");
+            if (wstate.has_suffix ("NORMAL")) {
+                return WindowState.NORMAL;
+            } else if (wstate.has_suffix ("MINIMIZED")) {
+                return WindowState.MINIMIZED;
+            } else if (wstate.has_suffix ("MAXIMIZED")) {
+                return WindowState.MAXIMIZED;
+            } else if (wstate.has_suffix ("FULLSCREEN")) {
+                return WindowState.FULLSCREEN;
+            } else {
+                return WindowState.NORMAL;
+            }
+        } set {
+            set_string ("settings", "last-window-state", value.to_string (), "MIDORI_WINDOW_NORMAL");
         } }
 
         // Note: Speed Dial is saved as Blank Page for compatibility reasons

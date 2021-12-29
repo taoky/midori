@@ -389,6 +389,20 @@ namespace Midori {
                 default_width = settings.last_window_width;
                 default_height = settings.last_window_height;
             }
+
+            if (settings.last_window_state != WindowState.NORMAL) {
+                switch (settings.last_window_state) {
+                    case WindowState.MAXIMIZED:
+                        maximize ();
+                        break;
+                    case WindowState.FULLSCREEN:
+                        fullscreen_activated ();
+                        break;
+                    case WindowState.MINIMIZED:
+                        iconify ();
+                        break;
+                }
+            }
         }
 
         void update_decoration_layout () {
