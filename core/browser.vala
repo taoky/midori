@@ -324,8 +324,13 @@ namespace Midori {
                     }, Priority.LOW);
                 } else {
                     var previous_tab = tabs.get_children ().nth_data (0);
-                    if (previous_tab == null)
-                        close ();
+                    if (previous_tab == null) {
+                        if (web_context.is_ephemeral ()) {
+                            close ();
+                        } else {
+                            homepage_activated();
+                        }
+                    }
                     else
                         tab = (Tab)previous_tab;
                 }
@@ -488,7 +493,8 @@ namespace Midori {
         }
 
         void tab_new_activated () {
-            var tab = new Tab (null, web_context);
+            // Open homepage instead when creating new tabs
+            var tab = new Tab (null, web_context, homepage_uri());
             add (tab);
             tabs.visible_child = tab;
         }
@@ -551,7 +557,7 @@ namespace Midori {
             tab.stop_loading ();
         }
 
-        void homepage_activated () {
+        string homepage_uri () {
             var settings = CoreSettings.get_default ();
             string homepage = settings.homepage;
             string uri;
@@ -564,6 +570,11 @@ namespace Midori {
                 // Fallback to search if URI is about:search or anything else
                 uri = settings.uri_for_search ();
             }
+            return uri;
+        }
+
+        void homepage_activated () {
+            string uri = homepage_uri ();
             if (tab == null) {
                 add (new Tab (null, web_context, uri));
             } else {
