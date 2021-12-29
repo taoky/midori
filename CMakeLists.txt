@@ -72,7 +72,7 @@ set(CFLAGS "${CFLAGS} -g")
 set(VALA_CFLAGS "-g -fPIC -w -Werror")
 
 set(LIBCORE "${CMAKE_PROJECT_NAME}-core")
-set(CORE_USER_AGENT_VERSION "Midori/6")
+set(CORE_USER_AGENT_VERSION "Midori/9")
 
 configure_file(config.h.in config.h @ONLY)
 
