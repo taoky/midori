@@ -453,6 +453,7 @@ namespace Midori {
                 foreach (string action in browser.list_actions ()) {
                     command_line.print ("%s\n", action);
                 }
+                Process.exit (0);
             }
 
             if (app != "") {
