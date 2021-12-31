@@ -20,8 +20,8 @@ namespace Midori {
     public class Tab : WebKit.WebView {
         public string id { owned get { return "%p".printf (this); } }
         public double progress { get; protected set; }
-        public new bool can_go_back { get; protected set; }
-        public new bool can_go_forward { get; protected set; }
+        public new signal void go_back_sig (bool can);
+        public new signal void go_forward_sig (bool can);
         public DatabaseItem? item { get; protected set; default = null; }
         public string display_uri { get; protected set; }
         public string display_title { get; protected set; }
@@ -44,8 +44,6 @@ namespace Midori {
             notify["is-loading"].connect (update_progress);
             notify["uri"].connect ((pspec) => {
                 display_uri = uri;
-                can_go_back = base.can_go_back ();
-                can_go_forward = base.can_go_forward ();
             });
             notify["title"].connect ((pspec) => {
                 if (title != null && title != "") {
@@ -94,6 +92,11 @@ namespace Midori {
             }
             item = new DatabaseItem (display_uri, null, 0);
 
+            base.get_back_forward_list ().changed.connect (() => {
+                go_back_sig (base.can_go_back ());
+                go_forward_sig (base.can_go_forward ());
+            });
+
             var extensions = Plugins.get_default ().plug<TabActivatable> ("tab", this);
             extensions.extension_added.connect ((info, extension) => ((TabActivatable)extension).activate ());
             extensions.extension_removed.connect ((info, extension) => ((TabActivatable)extension).deactivate ());
@@ -130,10 +133,22 @@ namespace Midori {
             return base.focus_in_event (event);
         }
 
+        public new void go_back () {
+            if (base.can_go_back ()) {
+                base.go_back();
+            }
+        }
+
+        public new void go_forward () {
+            if (base.can_go_forward ()) {
+                base.go_forward();
+            }
+        }
+
         void update_progress (ParamSpec pspec) {
             // Update back/ forward state here since there's no signal
-            can_go_back = base.can_go_back ();
-            can_go_forward = base.can_go_forward ();
+            //  can_go_back = base.can_go_back ();
+            //  can_go_forward = base.can_go_forward ();
 
             if (is_loading && estimated_load_progress < 1.0) {
                 // When loading we want to see at minimum 10% progress

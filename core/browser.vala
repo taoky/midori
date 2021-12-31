@@ -242,10 +242,11 @@ namespace Midori {
             var go_forward = new SimpleAction ("go-forward", null);
             go_forward.activate.connect (go_forward_activated);
             add_action (go_forward);
-            notify["uri"].connect (() => {
-                go_back.set_enabled (tab.can_go_back);
-                go_forward.set_enabled (tab.can_go_forward);
-            });
+            //  notify["uri"].connect (() => {
+            //      warning ("browser notify uri back %s forward %s", tab.can_go_back ? "true" : "false", tab.can_go_forward ? "true" : "false");
+            //      go_back.set_enabled (tab.can_go_back);
+            //      go_forward.set_enabled (tab.can_go_forward);
+            //  });
             var reload = new SimpleAction ("tab-reload", null);
             reload.activate.connect (tab_reload_activated);
             add_action (reload);
@@ -308,6 +309,16 @@ namespace Midori {
                     bindings.append (tab.bind_property ("pinned", toggle_fullscreen, "visible", BindingFlags.INVERT_BOOLEAN));
                     bindings.append (tab.bind_property ("pinned", navigationbar, "visible", BindingFlags.INVERT_BOOLEAN));
                     bindings.append (tab.bind_property ("zoom-level", this, "zoom-level", BindingFlags.SYNC_CREATE));
+
+                    go_back.set_enabled (tab.can_go_back ());
+                    tab.go_back_sig.connect ((can) => {
+                        go_back.set_enabled (can);
+                    });
+                    go_forward.set_enabled (tab.can_go_forward ());
+                    tab.go_forward_sig.connect ((can) => {
+                        go_forward.set_enabled (can);
+                    });
+
                     if (focus_timeout > 0) {
                         Source.remove (focus_timeout);
                         focus_timeout = 0;
@@ -328,7 +339,7 @@ namespace Midori {
                         if (web_context.is_ephemeral ()) {
                             close ();
                         } else {
-                            homepage_activated();
+                            homepage_activated ();
                         }
                     }
                     else
