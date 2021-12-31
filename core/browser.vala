@@ -240,7 +240,7 @@ namespace Midori {
             go_back.activate.connect (go_back_activated);
             add_action (go_back);
             var go_forward = new SimpleAction ("go-forward", null);
-            go_back.activate.connect (go_forward_activated);
+            go_forward.activate.connect (go_forward_activated);
             add_action (go_forward);
             notify["uri"].connect (() => {
                 go_back.set_enabled (tab.can_go_back);
