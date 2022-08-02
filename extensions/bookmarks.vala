@@ -120,11 +120,11 @@ namespace Bookmarks {
     [GtkTemplate (ui = "/ui/bookmarks-button.ui")]
     public class Button : Gtk.Button {
         [GtkChild]
-        Gtk.Popover popover;
+        unowned Gtk.Popover popover;
         [GtkChild]
-        Gtk.Entry entry_title;
+        unowned Gtk.Entry entry_title;
         [GtkChild]
-        Gtk.Button button_remove;
+        unowned Gtk.Button button_remove;
 
         Midori.Browser browser;
 

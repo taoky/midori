@@ -250,6 +250,9 @@ namespace Midori {
                         case GLib.FileMonitorEvent.CHANGES_DONE_HINT:
                             debug ("Reloading settings from %s", filename);
                             break;
+                        default:
+                            // make valac happy
+                            break;
                     }
                 });
             } catch (FileError.NOENT error) {
