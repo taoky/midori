@@ -339,7 +339,11 @@ namespace Tabby {
                     browser.activate_action ("homepage", null);
                     return true;
                 } else {
-                    return true;
+                    // originally "show last open tabs"
+                    // but here we don't want this feature.
+                    // To prevent midori crashing when no tab is available
+                    // Here we return false to let others know that they should create a new tab
+                    return false;
                 }
             } catch (Midori.DatabaseError error) {
                 critical ("Failed to restore session: %s", error.message);

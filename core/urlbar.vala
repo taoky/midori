@@ -191,7 +191,7 @@ namespace Midori {
                 }
             } else if (FileUtils.test (text, FileTest.EXISTS | FileTest.IS_REGULAR)) {
                 return File.new_for_commandline_arg (text).get_uri ();
-            }else if (is_external (text)) {
+            } else if (is_external (text)) {
                 return text;
             } else if (text.has_prefix ("geo:")) {
                 // Parse URI geo:48.202778,16.368472;crs=wgs84;u=40 as location
