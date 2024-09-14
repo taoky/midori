@@ -1,6 +1,6 @@
 # Copyright (C) 2013-2018 Christian Dywan <christian@twotoasts.de>
 
-cmake_minimum_required(VERSION 3.2)
+cmake_minimum_required(VERSION 3.5)
 
 # dh_translations detects this if there's no variable used
 set (GETTEXT_PACKAGE "midori")
@@ -76,7 +76,7 @@ add_definitions("-DGCR_API_SUBJECT_TO_CHANGE")
 set(CFLAGS "${CFLAGS} -g")
 
 # Explicitly add -fPIC for older toolchains
-set(VALA_CFLAGS "-g -fPIC -w -Werror")
+set(VALA_CFLAGS "-g -fPIC -w -Wno-int-conversion")
 
 set(LIBCORE "${CMAKE_PROJECT_NAME}-core")
 set(CORE_USER_AGENT_VERSION "Midori/9")

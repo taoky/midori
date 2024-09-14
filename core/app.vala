@@ -24,7 +24,7 @@ namespace Midori {
         static bool help_execute = false;
         static int inactivity_reset = 0;
         static bool incognito = false;
-        static bool version = false;
+        static new bool version = false;
         const OptionEntry[] options = {
             { "app", 'a', 0, OptionArg.STRING, ref app, N_("Run ADDRESS as a web application"), N_("ADDRESS") },
             { "execute", 'e', 0, OptionArg.STRING_ARRAY, ref execute, N_("Execute the specified command"), null },
@@ -368,7 +368,7 @@ namespace Midori {
             request.unref ();
         }
 
-        void win_new_activated (Action action, Variant? parameter) {
+        void win_new_activated (SimpleAction action, Variant? parameter) {
             var browser = new Browser (this);
             if (!browser.default_tab ()) {
                 browser.add (new Tab (null, browser.web_context));
