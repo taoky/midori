@@ -1,0 +1,739 @@
+midori-liims (9.0-1) unstable; urgency=medium
+
+  * Custom build for USTC Library computers.
+
+ -- Keyu Tao <taoky@mail.ustc.edu.cn>  Sat, 14 Sep 2024 23:39:00 +0800
+
+midori (7.0-2.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * debian/control: Drop obsolete Build-Depends on libunique-dev.
+    (Closes: #947514)
+
+ -- Boyuan Yang <byang@debian.org>  Sun, 05 Jan 2020 15:50:31 -0500
+
+midori (7.0-2) unstable; urgency=high
+
+  * Fix validation of HTTP proxy preference. (Closes: #920401)
+  * Remove obsolete conffiles from before 6.0. (Closes: #919199)
+
+ -- Dominik George <natureshadow@debian.org>  Sun, 24 Feb 2019 15:19:35 +0100
+
+midori (7.0-1) unstable; urgency=medium
+
+  * New upstream version.
+  * Build with libjavascriptcoregtk 4.
+
+ -- Dominik George <natureshadow@debian.org>  Thu, 13 Dec 2018 12:30:42 +0100
+
+midori (6.0-1) unstable; urgency=medium
+
+  * New upstream version.
+    + Uses WebKit 2 and GTK 3.
+    + Remove patches.
+    + Remove Debian/Ubuntu config split.
+    + Update d/copyright.
+  * Take over maintenance.
+
+ -- Dominik George <natureshadow@debian.org>  Sun, 04 Nov 2018 01:43:23 +0100
+
+midori (0.5.11-ds1-4) unstable; urgency=medium
+
+  * Passing non-NULL sourceURL string to JSEvaluateScript.
+    This fixes a segmentation fault that was happening after the last
+    update of webkitgtk.  I am fixing this in Midori because I think it is
+    a nice thing to do, but I will also report a bug against webkitgtk.
+    (Closes: #834236)
+
+ -- Sergio Durigan Junior <sergiodj@sergiodj.net>  Sat, 13 Aug 2016 12:54:10 -0400
+
+midori (0.5.11-ds1-3) unstable; urgency=medium
+
+  * Bumping Standards-Version to 3.9.8; removing midori-dbg package.
+    Our Standards-Version was out-of-date, so now we're using 3.9.8, the
+    latest one.  Also, there is no need to build midori-dbg anymore,
+    because Debian now builds dbgsym packages by default.
+  * Using dversionmangle to correctly compare versions against upstream.
+    This also fixes a lintian warnings.
+  * Use HTTPS for Vcs-* links.
+  * Update Format specification link on debian/copyright.
+  * Enable hardening=+all when building.
+
+ -- Sergio Durigan Junior <sergiodj@sergiodj.net>  Tue, 19 Jul 2016 13:34:52 -0400
+
+midori (0.5.11-ds1-2) unstable; urgency=medium
+
+  * Update debian/watch with new URL for fetching tarball.
+    This solves a lintian warning and makes it possible to track new
+    releases through normal Debian mechanisms.
+
+ -- Sergio Durigan Junior <sergiodj@sergiodj.net>  Fri, 01 Jan 2016 16:38:27 -0500
+
+midori (0.5.11-ds1-1) unstable; urgency=medium
+
+  * Rename package (and source tarball) in order to fix a mistake that
+    happened when uploading the first version of the "0.5.11" version.
+    Somehow, the source tarball was different than the original tarball.
+    Fortunately, the only difference were the timestamps.
+  * Update version of Chromium's User-Agent string.
+    We identify ourselves as Chromium to other websites, but the version
+    we use in the User-Agent string is pretty old.  This commit updates it
+    to a newer version (49.0.2571.2, from Nov 22 2015).  The positive
+    side-effect from doing this is that Google does not bother the user
+    asking her to upgrade to a "newer Chrome". (Closes: #805457)
+  * Convert patch add-debian-searches to gbp-pq.
+    Trivial adjustment on add-debian-searches in order to make it
+    compliant with gbp-pq.
+  * Better handling of self-signed certificates.
+    Midori needs gcr/gnome-keyring in order to fully work with self-signed
+    TLS certificates.  This commit improves the error message that is
+    displayed when clicking on "Trust this website" does not work, and
+    also makes the Debian Midori package recommend installing
+    gnome-keyring.  This is the best we can do for now. (Closes: #799963)
+  * Improve security by making sure that we use a safe set of ciphers.
+    This comes from Debian bug #804196 (LP Bug #1517265).  When Midori
+    uses libwebkitgtk, it inherits the default value of the
+    G_TLS_GNUTLS_PRIORITY environment variable.  Unfortunately this value
+    is not safe enough because it still lets GnuTLS to enable to unsafe
+    ciphers.  Therefore, we need to set this variable ourselves and make
+    sure that Midori is using safe ciphers for TLS operations. (Closes: #804196)
+  * Override "source-is-missing data/autosuggestcontrol.js"
+    Lintian is wrongly reporting a "source-is-missing" error for
+    data/autosuggestcontrol.js.  I have reported a bug against it (809170)
+    and now I am overriding the error.
+  * Fix Vcs-* URLs.
+    The package was still using old, non-canonical URLs for
+    Vcs-{Git,Browser}.  Update them now.
+  * Remove midori.menu (and solve lintian warning)
+    Lintian was warning "command-in-menu-file-and-desktop-file".  Since
+    Midori already ships a .desktop file, it is time to remove the
+    midori.menu file from the package.
+
+ -- Sergio Durigan Junior <sergiodj@sergiodj.net>  Sun, 27 Dec 2015 16:12:18 -0500
+
+midori (0.5.11-2) unstable; urgency=medium
+
+  * Remove "Force SSL verification" patch.
+    The patch "force-ssl-cert-verification.patch" was mistakenly included
+    in the last Midori release; this cased a regression because the user
+    cannot access a website that has a self-signed SSL/TLS certificate
+    anymore.  This change removes the patch and allows the user to trust
+    self-signed certificates again. (Closes: #799337)
+
+ -- Sergio Durigan Junior <sergiodj@sergiodj.net>  Fri, 18 Sep 2015 15:29:38 -0400
+
+midori (0.5.11-1) unstable; urgency=low
+
+  [ Yves-Alexis Perez ]
+  * New upstream release.
+  * Apply patch from Colin Watson to improve conffile handling, using new
+    debhelper features.                                         closes: #659773
+  * debian/control:
+    - update standards version to 3.9.3.
+    - update homepage address.
+    - remove myself from uploaders.
+  * debian/midori.maintscript:
+    - handle the /etc/xdg/midori/extensions/libadblock.so removal there.
+                                                                closes: #660303
+  * debian/patches:
+    - force-ssl-cert-verification added, set ssl-strict to TRUE so connections
+      are not done if the ssl certificate can't be trusted.
+  * debian/compat bumped to 9.
+
+  [ Ryan Niebur ]
+  * new upstream version, including the waf unpack changes made thanks
+    to the NMU by Koichi Akabe
+    - refreshed patches
+    - add new Build-Dep on libzeitgeist-dev
+  * Improve dh_auto_clean target in d/rules to handle some leftover
+    files from quilt and waf
+
+  [ Andres Salomon ]
+  * Import Debian patch 0.4.3+dfsg-0.2
+
+  [ Sergio Durigan Junior ]
+  * Changing gbp.conf to not override the default tag name for releases.
+  * Updating section names on debian/gbp.conf
+  * Imported Upstream version 0.5.11
+  * Update debian/patches for the new Midori version (0.5.11).
+  * Revamp build system (use cmake instead of waf)
+    - Update debian/rules, removing old stuff (from waf) and adding new,
+      simpler rules for the cmake-based build.
+    - Update debian/control, listing the new package maintainer and
+      reviewed dependencies.
+    - Delete debian/waf-unpack file.
+    - Rename debian/config/{Debian,Ubuntu}.h files to
+      debian/config/{Debian,Ubuntu}.conf.
+    With this change, it is now unnecessary to create a DFSG-modified
+    version of the package, because Waf is not used as the build system
+    anymore (for more details, see Bug 645191).
+    It is possible to build the package now, but it still has some lintian
+    warnings that will be fixed in the following changes.
+    (Closes: #663185, #758103, #787878)
+  * Adding shlibs and lintian-overrides files.
+    Due to the way libraries (i.e., plugins) are built by Midori (without
+    a proper SONAME), it is necessary (or at least recommended) to provide
+    a shlibs file that contains trustworthy information about the
+    libraries being installed on the system.
+    Unfortunately, it is also necessary to provide a lintian-overrides
+    file in order to silence some lintian warnings (mostly about the
+    shlibs mentioned above).  We'll have to work with upstream in order to
+    solve this problem.
+    Another lintian error that needed to be silenced was related to the
+    data/midori.swf file, present at the original tarball.  This file is
+    used just for testing (i.e., it is not installed in the system), and
+    is actually generated using the png2swf utility (from the swftools
+    package), which means it can be verified.
+  * Rewrite manpage.
+    The old manpage was too simple and did not cover many of the options
+    supported by Midori on the command line.  Fixed that by rewriting it
+    almost completely, including many missing options, updating dates and
+    author, and improving the formatting.
+
+ -- Sergio Durigan Junior <sergiodj@sergiodj.net>  Tue, 15 Sep 2015 12:37:55 -0400
+
+midori (0.4.3+dfsg-0.2) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Drop debian/presubj.in as the webkit text browser
+    GtkLauncher is no longer packaged. (Closes: #759959)
+
+ -- Neil Williams <codehelp@debian.org>  Thu, 06 Nov 2014 14:04:07 +0000
+
+midori (0.4.3+dfsg-0.1) unstable; urgency=low
+
+  * Non-maintainer upload
+  * Repack to extract waf script (Closes: 645191)
+  * debian/waf-unpack
+    - add to describe how to extract waf script
+  * debian/rules
+    - add get-orig-source target
+
+ -- Koichi Akabe <vbkaisetsu@gmail.com>  Sat, 24 Nov 2012 17:33:35 +0900
+
+midori (0.4.3-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Yves-Alexis Perez <corsac@debian.org>  Mon, 19 Dec 2011 00:26:46 +0100
+
+midori (0.4.2-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/midori.{preinst,postinst,postrm}:
+    - handle adblock configuration file rename.
+
+ -- Yves-Alexis Perez <corsac@debian.org>  Mon, 14 Nov 2011 14:26:25 +0100
+
+midori (0.4.1-2) unstable; urgency=low
+
+  * debian/control:
+    - update libwebkitgtk-dev build-dep to 1.4.3
+  * As a side effect, the rebuild against webkit 1.6.1 fix midori crashing
+    because of missing webkit_web_view_get_selected_text()      closes: #646198
+
+ -- Yves-Alexis Perez <corsac@debian.org>  Sat, 22 Oct 2011 14:46:34 +0200
+
+midori (0.4.1-1) unstable; urgency=low
+
+  * New upstream release.
+    - fix middle click on back/forward button.                  closes: #644840
+    - correctly clear private data on quit when asked.          closes: #644658
+  * debian/patches:
+    - 0001-Fix-for-Bug-819688 dropped, included upstream.
+  * debian/control:
+    - drop libjs-mootools from depends, it's not needed anymore.
+  * debian/rules:
+    - don't remove mootools.js since it's not even shipped anymore.
+
+ -- Yves-Alexis Perez <corsac@debian.org>  Mon, 10 Oct 2011 08:24:46 +0200
+
+midori (0.4.0-2) unstable; urgency=low
+
+  * debian/patches:
+    - 0001-Fix-for-Bug-819688 added, correctly restore tab panel when needed.
+
+ -- Yves-Alexis Perez <corsac@debian.org>  Tue, 06 Sep 2011 09:30:33 +0200
+
+midori (0.4.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/control:
+    - bump webkit build-dep to 1.1.17.
+    - bump valac build-dep to 0.10.
+
+ -- Yves-Alexis Perez <corsac@debian.org>  Tue, 02 Aug 2011 09:44:09 +0200
+
+midori (0.3.6-2) unstable; urgency=low
+
+  * debian/rules:
+    - don't install upstream changelog twice.                   closes: #614692
+  * debian/Debian-config:
+    - update homepage to point to faq.html.
+  * debian/control:
+    - build-dep on libwebkitgtk-dev instead of libwebkit-dev.
+
+ -- Yves-Alexis Perez <corsac@debian.org>  Tue, 26 Jul 2011 00:24:23 +0200
+
+midori (0.3.6-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/control:
+    - update vcs info.
+
+ -- Yves-Alexis Perez <corsac@debian.org>  Mon, 16 May 2011 08:32:33 +0200
+
+midori (0.3.5-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/control:
+    - add myself to uploaders...
+    - update standards version to 3.9.2.
+
+ -- Yves-Alexis Perez <corsac@debian.org>  Mon, 02 May 2011 21:50:53 +0200
+
+midori (0.3.3-0.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * New upstream release.
+  * debian/rules:
+    - install ChangeLog file as changelog and remove the one installed by make
+      install.
+  * debian/control:
+    - drop dpkg PreDepends.
+
+ -- Yves-Alexis Perez <corsac@debian.org>  Tue, 15 Mar 2011 22:36:00 +0100
+
+midori (0.3.2-0.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * New upstream release.
+    - fix bookmarks multiplication.                             closes: #613739
+  * debian/patches:
+    - 0001-Only-no-adblock-if-main-frame-in-provisional-state dropped, included
+      upstream.
+
+ -- Yves-Alexis Perez <corsac@debian.org>  Sun, 20 Feb 2011 10:50:11 +0100
+
+midori (0.3.0-1.3) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * debian/control:
+    - replace hardening-includes build-dep by hardening-wrapper.
+  * debian/rules:
+    - enable hardening.
+
+ -- Yves-Alexis Perez <corsac@debian.org>  Fri, 04 Feb 2011 09:01:07 +0100
+
+midori (0.3.0-1.2) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * debian/patches:
+    - 0001-Only-no-adblock-if-main-frame-in-provisional-state added, fix
+      adblock extension.                                        closes: #611682
+  * debian/rules:
+    - remove .lock-script in clean target.
+
+ -- Yves-Alexis Perez <corsac@debian.org>  Wed, 02 Feb 2011 21:01:25 +0100
+
+midori (0.3.0-1.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * New upstream release.
+  * debian/rules:
+    - pick {C,LD}FLAGS from dpkg-buildflags.
+    - add -Wl,-z,defs -Wl,--as-needed to LDFLAGS.
+    - add hardening flags to {C,LD}FLAGS.
+  * debian/rules:
+    - remove waf stuff, midori waf has been updated so it's no longer needed
+      to dynamically patch waf for HPPA.
+    - install $(DISTRO)-config to /etc/xdg/midori to tune the default homepage
+    - add -O1 to LDFLAGS.
+  * debian/{Ubuntu,Debian}-config added, with default homepage setting.
+  * debian/patches:
+    - add-debian-search refreshed.
+    - fix-serial-build dropped thanks to waf upgrade in midori.
+  * debian/control:
+    - drop quilt build-dep, useless now.
+
+ -- Yves-Alexis Perez <corsac@debian.org>  Mon, 31 Jan 2011 17:49:21 +0100
+
+midori (0.2.7-1.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+
+  [Ryan Niebur]
+  * New Upstream Version (Closes: #582213)
+    - fixes segfault (Closes: #579118)
+    - correct link to FAQ (Closes: #582512)
+  * refresh patches
+  * update copyright
+  * use dpkg-maintscript-helper to remove old config file
+    /etc/midori/extensions/libadblock.so (Closes: #573208)
+
+  [Yves-Alexis Perez]
+  * New 2.7 upstream release.
+  * debian/watch edited to correctly track upstream versions.
+  * debian/rules:
+    - use --fail-missing in dh_install
+  * debian/control:
+    - add build-dep on valac to build certain extensions.
+    - update standards version to 3.9.1
+
+ -- Yves-Alexis Perez <corsac@debian.org>  Tue, 17 Aug 2010 22:11:21 +0200
+
+midori (0.2.4-3) unstable; urgency=low
+
+  * don't run the tests
+  * add debian/source/format
+  * fix building in Serial mode (on HPPA)
+
+ -- Ryan Niebur <ryan@debian.org>  Sun, 18 Apr 2010 23:41:50 -0700
+
+midori (0.2.4-2) unstable; urgency=low
+
+  * use a patched waf for hppa, thanks to Jakub Wilk (Closes: #559989)
+
+ -- Ryan Niebur <ryan@debian.org>  Mon, 29 Mar 2010 00:39:30 -0700
+
+midori (0.2.4-1) unstable; urgency=low
+
+  * New Upstream Version
+    - update d/copyright
+    - handles files in current dir correctly (Closes: #565329)
+  * use bundled waf again (Closes: 571709)
+  * set Standards-Version to 3.8.4
+
+ -- Ryan Niebur <ryan@debian.org>  Sun, 07 Mar 2010 22:28:54 -0800
+
+midori (0.2.2-1) unstable; urgency=low
+
+  * New Upstream Version (Closes: #556184, #558339)
+    - fixes local uri handling (Closes: #560866, #550844)
+    - move libnotify from Recommends to Build-Deps to follow upstream
+    - update debian/copyright to match upstream changes
+    - fixes handling of URLs like "some.url?%00" (Closes: #561451)
+    - running twice doesn't crash the browser (Closes: #514435)
+    - Ctrl-w on last tab now closes it but still not the browser
+      (Closes: #545251)
+    - Ctrl-u in urlbar with emacs key binding theme works (Closes: #538327)
+  * move libjs-mootools to Recommends, it's not required (Closes:
+    #547584)
+  * tell the user to report the bug against libwebkit-1.0-2 if they
+    reproduce it in the Webkit test browser. Figure out the package name
+    and the path to GtkLauncher automagically during build. (Closes:
+    #562501)
+  * switch to system waf
+    - the FTBFS #559989 is no longer the fault of anything in my package,
+      and I've set #561130 in the BTS to affect midori, so (Closes: #559989)
+  * refresh patch
+
+ -- Ryan Niebur <ryan@debian.org>  Thu, 24 Dec 2009 18:30:46 -0800
+
+midori (0.2.0-1) unstable; urgency=low
+
+  * New Upstream Version
+    (Closes: 551328, 551513)
+  * update debian/copyright
+  * bump libwebkit-dev build-dep to 1.1.15 for adblock (Closes: 546985)
+  * update my email address and remove DMUA field
+
+ -- Ryan Niebur <ryan@debian.org>  Sun, 18 Oct 2009 15:44:22 -0700
+
+midori (0.1.10-1) unstable; urgency=low
+
+  * New upstream release
+  * use mootools.js from the libjs-mootools package
+
+ -- Ryan Niebur <ryanryan52@gmail.com>  Tue, 15 Sep 2009 22:46:55 -0700
+
+midori (0.1.9-1) unstable; urgency=low
+
+  * fix watch file, thanks to Rogério Brito
+  * New Upstream Version (Closes: #541354)
+    - refresh patches
+    - update copyright
+  * fix Homepage field, thanks to Francesco Poli (Closes: #541414)
+  * improve bugs search to work for packages too, thanks to Denis
+    Laxalde for the suggestion (Closes: #542050)
+  * Debian Policy 3.8.3
+
+ -- Ryan Niebur <ryanryan52@gmail.com>  Wed, 02 Sep 2009 15:36:37 -0700
+
+midori (0.1.8-1) unstable; urgency=low
+
+  * New Upstream Version
+    - refresh patches
+    - enable tests
+    - update debian/copyright
+  * Debian Policy 3.8.2
+
+ -- Ryan Niebur <ryanryan52@gmail.com>  Sat, 01 Aug 2009 09:07:30 -0700
+
+midori (0.1.7-1) unstable; urgency=low
+
+  * New Upstream Version
+  * adopt package: set myself as maintainer, remove uploaders (Closes: #528731)
+  * rearrange the debian/rules file
+  * use xvfb for tests, but disable them, they don't work right
+  * use 'dh --with quilt' for patching instead of including
+    /usr/share/quilt/quilt.make
+  * fix format of debian/copyright
+  * build dep on debhelper 7.0.50 instead of 7.2
+  * add debian bts to the list of searches, thanks to Giuseppe for the
+    patch (Closes: #525991)
+  * refresh patches
+  * change the default-homepage patch to use the files in debian/config/
+    to set the default homepage based on whether it's debian, ubuntu,
+    etc (second half of ubuntu diff)
+  * also set a priority number for the alternative in the distro config
+    file. This sets it to 50 for debian, and 39 for ubuntu (just under
+    firefox). This addresses the other half of the ubuntu diff.
+  * add recommends on libnotify1
+  * update copyright information
+  * remove extra file, debian/patches/0001-Don-t-expressly-use-libkatze-
+    in-extensions-to-avoid.patch
+  * remove some old todo items from debian/TODO
+
+ -- Ryan Niebur <ryanryan52@gmail.com>  Fri, 29 May 2009 20:31:09 -0700
+
+midori (0.1.6-1) experimental; urgency=low
+
+  * New upstream release (Closes: #525471).
+
+ -- Trent W. Buck <trentbuck@gmail.com>  Sat, 25 Apr 2009 11:09:59 +1000
+
+midori (0.1.5-1) experimental; urgency=low
+
+  * New upstream release (Closes: #522549).
+  * Cherry-pick -fPIC fix from upstream's git and remove previous
+    kludge from debian/rules (Closes: #518281).
+  * Don't allow linking with incompatibly old libsoup (Closes: #522436).
+  * Use new "debug" section for midori-dbg.
+  * As Midori is still immature, reduce its priority as an x-www-browser
+    alternatives.  Mainly this is to keep Ubuntu's iceweasel users happy.
+
+    Long-term, I should collaborate with the other x-www-browser providers
+    to agree on a numbering system (e.g. by popcon popularity).  Currently
+    it is as follows:
+
+    20 conkeror, 30 chimera2, 50 dillo, 50 midori, 69 xlinks2,
+    70 iceweasel, 70 kazehakase, 85 epiphany-gecko, 100 konqueror,
+    100 netsurf, 120 galeon
+
+ -- Trent W. Buck <trentbuck@gmail.com>  Sun, 05 Apr 2009 14:07:42 +1000
+
+midori (0.1.4-2) experimental; urgency=low
+
+  * Always use -fPIC. (Closes: #518281).
+  * Force rebuild with newer dependencies, to see what happens.
+    The next upstream release will require these version bumps anyway.
+
+    * Bump libsoup dependency to 2.25.2.
+    * Bump webkit dependency to 1.1 (Closes: #519854, #519123).
+    * Bump libunique dependency to 1.0.6 (Closes: #509801).
+      Note that 1.0.2 should work: only 1.0.4 is bad.
+
+  * Reintroduce quilt while we wait for the 3.0 source format.
+    * Add a Debian search to the default search list (Closes: #520381).
+    * Make the homepage a local file.  See patch header for rationale.
+
+  * Use new dh 7.2 "overrides" style.
+  * Update copyright file.
+  * Remove stale CDBS dependency.
+  * Bump standards version to 3.8.1.  No changes necessary.
+
+ -- Trent W. Buck <trentbuck@gmail.com>  Sat, 21 Mar 2009 21:39:05 +1100
+
+midori (0.1.4-1) unstable; urgency=low
+
+  * New upstream release.
+  * Use dh(1).
+  * New dependency (libidn11-dev) and undependency (libhildon-1-dev).
+  * Install /etc/xdg/midori/search.
+
+ -- Trent W. Buck <trentbuck@gmail.com>  Mon, 09 Mar 2009 22:29:12 +1100
+
+midori (0.1.2-1) unstable; urgency=low
+
+  [ Trent W. Buck ]
+  * New upstream release (Closes: #512788).
+    Paraphrasing upstream's blog post:
+
+    * Support for bookmarklets (javascript in bookmarks).
+    * Links with target=_blank now work (opening a new tab).
+    * With recent versions of libsoup and webkit, cookies can persist
+      between sessions.
+    * Preferences or bookmarks are saved to disk as they are changed.
+    * The first time Midori is run after a crash, it will first
+      display a "rescue" dialog allowing preferences to be edited or
+      scripts disabled.  This is intended for when a script causes
+      Midori to crash as it boots, which would otherwise require
+      editing config files by hand to fix.
+     * Significant speed and capacity improvements to browsing history.
+  * Appease lintian regarding various warnings.
+  * Update feature list in Description.
+  * Make me the Maintainer and William and Uploader.
+  * Rewrite manpage.
+
+  [ William Pitcock ]
+  * Fix lintian source warnings concerning midori-dbg.
+  * Update my e-mail address.
+
+ -- Trent W. Buck <trentbuck@gmail.com>  Sat, 31 Jan 2009 14:24:16 +1100
+
+midori (0.1.1-1) unstable; urgency=low
+
+  * New upstream release.  From upstream's blog post:
+
+    * Integration of history completion in the location entry.
+    * libSoup is used in place of GIO for loading icons, viewing
+      sources, saving files, and for the first time icons are actually
+      cached on disk.
+    * The side panel gained a compact mode to take up considerably
+      less space. Bookmarks in the toolbar finally match the menu and
+      the panel at any time.
+    * The Web Inspector [in] WebKitGtk is now supported.
+    * The beginning of unit testing.
+    * The ground work for an extension interface has been done,
+      extension modules can be written in C at the moment. Bindings to
+      Lua and/ or Python are planned for the future. Note that the
+      side panel doesn't currently expose the extension management,
+      but the Page holder was actually rewritten as one of the example
+      extensions.
+
+  * Change build dependency to libsoup (from gvfs and gtksourceview).
+  * Rewrite manpage and package description.
+
+ -- Trent W. Buck <trentbuck@gmail.com>  Sat, 13 Dec 2008 18:00:06 +1100
+
+midori (0.1.0-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Trent W. Buck <trentbuck@gmail.com>  Fri, 24 Oct 2008 15:42:29 +1100
+
+midori (0.0.21+23-1) UNRELEASED; urgency=low
+
+  * Upstream snapshot.
+  * TODO: .po issue fixed upstream (FS: 114).
+  * TODO: Help > Contents now browses to FAQ (FS: 112).
+
+ -- Trent W. Buck <trentbuck@gmail.com>  Thu, 18 Sep 2008 11:07:19 +1000
+
+midori (0.0.21-1) unstable; urgency=low
+
+  * New upstream release (Closes: #497647).
+    * control: add new upstream dependencies.
+  * control: Bump Standards-Version to 3.8.0 (no changes).  We were
+    actually already using the Homepage header field.
+  * control, compat, rules: bump debhelper to 7, because I'm a bit
+    paranoid about claiming to build with dh4.1.  Fix dh_strip args in
+    rules file since the semantics changed in dh5.
+  * README.Debian: discuss "missing" icons.
+  * control: recommend gnome-icon-theme (Closes: #494061).
+  * control: fix homepage link (Closes: #492687).
+  * control: provide www-browser (Closes: #476178).
+    Not adding www-browser alternative since other X-based browsers seem
+    to only set the x-www-browser alternative.
+  * watch: fixed.  Upstream tarballs now hosted by XFCE, yay!
+  * presubj, install: have users try GtkLauncher before reporting bugs.
+  * midori.menu: add (Closes: #466588).
+  * midori.install: install .mo and .png files!
+  * control: allow DM uploads, since I'll soon be a DM.
+
+ -- Trent W. Buck <trentbuck@gmail.com>  Mon, 15 Sep 2008 22:10:35 +1000
+
+midori (0.0.19-2) unstable; urgency=low
+
+  * Add build dependency on python (for ./waf).
+
+ -- Trent W. Buck <trentbuck@gmail.com>  Wed, 13 Aug 2008 12:30:27 +1000
+
+midori (0.0.19-1) unstable; urgency=low
+
+  * New upstream release
+  * Upstream uses waf now.  Dirty hacks to make CDBS do waf.
+  * Drop the homepage patch, since it wasn't being unapplied correctly and
+    it doesn't really accomplish anything like the desired behaviour in
+    debian/TODO.
+
+ -- Trent W. Buck <trentbuck@gmail.com>  Sun, 10 Aug 2008 22:18:52 +1000
+
+midori (0.0.18-2) unstable; urgency=low
+
+  * Change release to unstable, per William Pitcock's request.
+
+ -- Trent W. Buck <trentbuck@gmail.com>  Sun, 08 Jun 2008 13:32:23 +1000
+
+midori (0.0.18-1) experimental; urgency=low
+
+  * New upstream release
+  * debian/control (Build-Depends): accommodate name change in webkit.
+  * debian/control (Build-Depends): appease lintian by dropping -1.
+  * debian/control (Build-Depends): add libxml-parser-perl.
+  * debian/control (Homepage): add.
+  * debian/control (Maintainer, Uploaders): change (Closes: #480026).
+  * debian/copyright: appease lintian by citing copyright verbatim.
+  * debian/midori.prerm, debian/midori.postrm: tweak cases where
+    update-alternatives is called, hopefully making them more correct.
+  * debian/rules: remove config.log to appease lintian.
+  * debian/watch: add (Closes: #482002).
+
+ -- Trent W. Buck <trentbuck@gmail.com>  Sat, 07 Jun 2008 15:00:06 +1000
+
+midori (0.0.17-1) experimental; urgency=low
+
+  * New upstream release. Closes: #457392
+    - Fix issues with the preference dialog. Closes: #454206
+  * Provide an alternative for x-www-browser. Closes: #454607
+  * Update Standards-Version.
+
+ -- Emanuele Rocca <ema@debian.org>  Thu, 07 Feb 2008 11:11:14 +0100
+
+midori (0.0.13-1) experimental; urgency=low
+
+  * New upstream release
+
+ -- Emanuele Rocca <ema@debian.org>  Tue, 04 Dec 2007 19:41:39 +0100
+
+midori (0.0.12-1) experimental; urgency=low
+
+  * New upstream release
+
+ -- Emanuele Rocca <ema@debian.org>  Fri, 30 Nov 2007 18:41:48 +0100
+
+midori (0.0.11-1) experimental; urgency=low
+
+  * New upstream release
+
+ -- Emanuele Rocca <ema@debian.org>  Fri, 16 Nov 2007 18:56:50 +0100
+
+midori (0.0.10-1) experimental; urgency=low
+
+  * New upstream release
+
+ -- Emanuele Rocca <ema@debian.org>  Sat, 13 Oct 2007 10:45:09 +0200
+
+midori (0.0.8-1) experimental; urgency=low
+
+  * New upstream release
+  * Patched to build correctly against webkit 0~svn26044-1
+  * libwebkitgdk has been renamed to libwebkitgtk, build dependency updated
+    accordingly
+
+ -- Emanuele Rocca <ema@debian.org>  Tue, 09 Oct 2007 22:42:25 +0200
+
+midori (0.0.7-1) experimental; urgency=low
+
+  * New upstream release.
+  * Added minori-dbg binary package.
+  * Improved long description.
+
+ -- Emanuele Rocca <ema@debian.org>  Sat, 15 Sep 2007 14:01:58 +0200
+
+midori (0.0.6-1) experimental; urgency=low
+
+  * Initial release. Closes: #441838
+
+ -- Emanuele Rocca <ema@debian.org>  Mon, 10 Sep 2007 23:37:01 +0200

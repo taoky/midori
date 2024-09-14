@@ -1,0 +1,13 @@
+#!/bin/sh
+set -e
+case "$1" in
+    configure)
+        update-alternatives \
+            --install /usr/bin/x-www-browser \
+            x-www-browser /usr/bin/midori 50 \
+            --slave /usr/share/man/man1/x-www-browser.1.gz \
+            x-www-browser.1.gz /usr/share/man/man1/midori.1.gz
+        ;;
+esac
+#DEBHELPER#
+exit 0

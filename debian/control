@@ -1,0 +1,49 @@
+Source: midori-liims
+Section: web
+Priority: optional
+Maintainer: Dominik George <natureshadow@debian.org>
+Uploaders: Sergio Durigan Junior <sergiodj@sergiodj.net>
+Build-Depends:
+ cmake,
+ debhelper-compat (= 13),
+ intltool,
+ libarchive-dev,
+ libgcr-3-dev (>= 2.32),
+ libjavascriptcoregtk-4.0-dev,
+ libjson-glib-dev,
+ libnotify-dev,
+ libpeas-dev,
+ librsvg2-bin,
+ libsoup-gnome2.4-dev (>= 2.27.90),
+ libsqlite3-dev (>= 3.6.19),
+ libwebkit2gtk-4.0-dev,
+ libxml2-dev (>= 2.6),
+ libxml2-utils,
+ libxss-dev,
+ libzeitgeist-2.0-dev,
+ lsb-release,
+ valac,
+ xauth,
+ xfonts-base,
+ xvfb,
+Standards-Version: 9.0.0
+Homepage: https://www.midori-browser.org/
+Vcs-Git: https://salsa.debian.org/debian/midori.git
+Vcs-Browser: https://salsa.debian.org/debian/midori
+
+Package: midori-liims
+Architecture: any
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends:
+ gnome-icon-theme,
+ gnome-keyring,
+Provides:
+ www-browser,
+ midori,
+Conflicts:
+ libsoup2.4-1 (<< 2.25.2),
+ midori,
+Description: fast, lightweight graphical web browser for public computers
+ Midori-liims is a modified lightweight web browser based on WebKit for USTC library public computers.

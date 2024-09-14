@@ -1,0 +1,5 @@
+# Splitting the library out does not make sense
+midori: package-name-doesnt-match-sonames libmidori-core0
+midori: gir-missing-typelib-dependency usr/share/gir-1.0/Midori-0.6.gir gir1.2-midori-0.6
+midori: typelib-package-name-does-not-match usr/lib/girepository-1.0/Midori-0.6.typelib gir1.2-midori-0.6
+midori: link-to-shared-library-in-wrong-package usr/lib/libmidori-core.so.0.6 usr/lib/libmidori-core.so

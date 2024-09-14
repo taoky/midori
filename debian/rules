@@ -1,0 +1,38 @@
+#!/usr/bin/make -f
+# output every command that modifies files on the build system.
+#DH_VERBOSE = 1
+
+DPKG_EXPORT_BUILDFLAGS = 1
+include /usr/share/dpkg/default.mk
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+%:
+	dh $@ --buildsystem=cmake --builddirectory=_build/
+
+# Midori uses a "poor man's configure" which only accepts a minimal,
+# pre-defined set of flags.  Therefore, we invoke cmake directly here.
+override_dh_auto_configure:
+	dh_auto_configure -- \
+	-DCMAKE_INSTALL_PREFIX=/usr \
+	-DCMAKE_INSTALL_SYSCONFDIR=/etc \
+	-DCMAKE_INSTALL_LIBDIR=/usr/lib \
+	..
+
+# cmake does not emit useful information when compiling the source
+# files.  We use VERBOSE here for that.
+override_dh_auto_build:
+	dh_auto_build -- VERBOSE=1
+
+# We have to override 'make check' because it needs to run under
+# xvfb-run.  And some tests still fail.
+override_dh_auto_test:
+	(cd _build && xvfb-run make check) || true
+
+override_dh_auto_install:
+	dh_auto_install
+	rm -f debian/midori/usr/share/doc/midori/COPYING debian/midori/usr/share/doc/midori/TRANSLATE
+
+override_dh_installchangelogs:
+	rm -f debian/midori/usr/share/doc/midori/ChangeLog
+	dh_installchangelogs

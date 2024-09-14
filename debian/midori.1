@@ -1,0 +1,123 @@
+.TH MIDORI "1" "September 2015" "midori 0.5.11" "User commands"
+
+.SH NAME
+midori \- fast and lightweight Web Browser.
+
+.SH SYNOPSIS
+
+.PP
+\fBmidori\fR [OPTION...] [URL]
+
+.SH DESCRIPTION
+\fBmidori\fR is a lightweight Web Browser.
+
+.SH OPTIONS
+.IP
+.SS "Application Options:"
+
+.TP
+\fB\-a\fR \fIADDRESS\fR\fR, \fB\-\-app\fR=\fIADDRESS\fR
+
+Run \fIADDRESS\fR as a web application.
+
+.TP
+\fB\-c\fR \fIFOLDER\fR, \fB\-\-config\fR=\fIFOLDER\fR
+
+Use \fIFOLDER\fR as configuration folder.
+
+.TP
+\fB\-p\fR, \fB\-\-private\fR
+
+Run Midori in private mode.  No changes are saved in this mode.
+
+.TP
+\fB\-\-plain\fR
+
+Plain GTK+ window with WebKit, akin to GtkLauncher.
+
+.TP
+\fB\-d\fR, \fB\-\-diagnostic\-dialog\fR
+
+Show a diagnostic dialog.
+
+.TP
+\fB\-g\fR, \fB\-\-debug\fR
+
+Run Midori within gdb and save a backtrace on crash.  Useful when
+reporting bugs against the package.
+
+.TP
+\fB\-r\fR \fIFILE\fR, \fB\-\-run\fR=\fIFILE\fR
+
+Run \fIFILE\fR as a JavaScript.
+
+.TP
+\fB\-s\fR \fIURI\fR, \fB\-\-snapshot\fR=\fIURI\fR
+
+Take a snapshot of \fIURI\fR.
+
+.TP
+\fB\-e\fR \fICOMMAND\fR, \fB\-\-execute\fR=\fICOMMAND\fR
+
+Run the specified \fICOMMAND\fR.  To obtain a list of supported
+commands, see \fB\-\-help\-execute\fR below.
+
+.TP
+\fB\-\-help\-execute\fR
+
+Print a list of available commands supported by \fB\-\-execute\fR.
+
+.TP
+\fB\-V\fR, \fB\-\-version\fR
+
+Print the version of Midori.
+
+.TP
+\fB\-b\fR \fIPATTERN\fR, \fB\-\-block\-uris\fR=\fIPATTERN\fR
+
+Block URIs according to the regular expression specified in
+\fIPATTERN\fR.
+
+.TP
+\fB\-i\fR \fISECONDS\fR, \fB\-\-inactivity\-reset\fR=\fISECONDS\fR
+
+Reset Midori after \fISECONDS\fR seconds of inactivity.
+
+.TP
+\fB\-\-display\fR=\fIDISPLAY\fR
+
+X display to use.
+
+.SS Help Options:
+
+.TP
+\-?, \fB\-\-help\fR
+
+Show help options described above.
+
+.TP
+\fB\-\-help\-all\fR
+
+Show all help options.
+
+.TP
+\fB\-\-help\-gtk\fR
+
+Show GTK+ Options.
+
+.SH REPORTING BUGS
+Please report bugs using the Debian BTS <https://bugs.debian.org>.
+
+.SH AUTHOR
+\fBMidori\fR is copyright (C) 2007 Christian Dywan.
+
+.PP
+This manual page was completely rewritten by Sergio Durigan Junior
+<sergiodj@sergiodj.net>, based on the previous version by Emanuele
+Rocca <ema@debian.org>.  It was written for the Debian GNU/Linux
+system but may be used by others.
+
+.PP
+Permission is granted to copy, distribute and/or modify this document under the
+terms of the GNU General Public License, Version 2 or any later version published
+by the Free Software Foundation.
