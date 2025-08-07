@@ -31,7 +31,7 @@ namespace Midori {
             _secure = value;
             update_icon ();
         } }
-        internal bool blank { get { return uri == "about:blank" || uri == "internal:speed-dial"; } }
+        internal bool blank { get { return uri == "about:blank" || uri == "internal:speed-dial" || uri == ""; } }
 
         [GtkChild]
         unowned Gtk.Popover? suggestions;
@@ -182,21 +182,19 @@ namespace Midori {
             // Leading or trailing space means search
             if (text.has_prefix (" ") || text.has_suffix (" ")) {
                 return null;
-            } else if (Path.is_absolute (text)) {
-                try {
-                    return Filename.to_uri (text);
-                } catch (ConvertError error ) {
-                    debug ("Failed to convert URI to filename: %s", error.message);
-                    return text;
+            }
+            
+            // Check if input contains a protocol scheme
+            var colon_pos = text.index_of (":");
+            if (colon_pos > 0) {
+                var scheme = text.substring (0, colon_pos);
+                // If it's a protocol scheme but not http/https, ignore it completely
+                if (scheme != "http" && scheme != "https") {
+                    return ""; // Return empty string to ignore the input completely
                 }
-            } else if (FileUtils.test (text, FileTest.EXISTS | FileTest.IS_REGULAR)) {
-                return File.new_for_commandline_arg (text).get_uri ();
-            } else if (is_external (text)) {
-                return text;
-            } else if (text.has_prefix ("geo:")) {
-                // Parse URI geo:48.202778,16.368472;crs=wgs84;u=40 as location
-                return text;
-            } else if (is_location (text)) {
+            }
+            
+            if (is_location (text)) {
                 return text;
             } else if (is_ip_address (text)) {
                 return "http://" + text;
@@ -210,21 +208,15 @@ namespace Midori {
         }
 
         bool is_location (string uri) {
-            /* file:// is not considered a location for security reasons */
-            return uri.has_prefix ("about:")
-              || uri.has_prefix ("http://")
+            /* Only allow http and https protocols */
+            return uri.has_prefix ("http://")
               || uri.has_prefix ("https://")
-              || (uri.has_prefix ("data:") && (";" in uri))
-              || uri.has_prefix ("javascript:");
+              || uri == "about:blank";
         }
 
         bool is_external (string uri) {
-            if (uri.has_prefix ("file://")) {
-                return true;
-            }
-            var scheme = Uri.parse_scheme (uri);
-            return scheme != null
-                && AppInfo.get_default_for_uri_scheme (scheme) != null;
+            // Only allow http and https protocols, no external protocols
+            return false;
         }
 
         bool is_ip_address (string uri) {
