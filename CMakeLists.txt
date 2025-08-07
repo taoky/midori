@@ -7,8 +7,8 @@ set (GETTEXT_PACKAGE "midori")
 add_definitions("-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\"")
 project(${GETTEXT_PACKAGE} C)
 set(PROJECT_DOMAIN org.midori_browser.Midori)
-set(PROJECT_BUGS https://github.com/midori-browser/core/issues)
-set(PROJECT_WEBSITE https://www.midori-browser.org)
+set(PROJECT_BUGS https://github.com/taoky/midori/issues)
+set(PROJECT_WEBSITE https://github.com/taoky/midori/)
 set(CORE_VERSION 9.0)
 
 execute_process(COMMAND "git" "describe" "--tags"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-29 10:35+0800\n"
+"POT-Creation-Date: 2025-08-08 00:08+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,10 +39,6 @@ msgstr ""
 
 #: ../data/org.midori_browser.Midori.desktop.in.h:6 ../ui/shortcuts.ui.h:19
 msgid "New Private Browsing Window"
-msgstr ""
-
-#: ../core/about.vala:20
-msgid "_Report a Problem…"
 msgstr ""
 
 #: ../core/app.vala:29
@@ -77,7 +73,7 @@ msgstr ""
 msgid "Display version number"
 msgstr ""
 
-#: ../core/app.vala:214 ../core/tab.vala:93
+#: ../core/app.vala:214 ../core/tab.vala:91
 msgid "Speed Dial"
 msgstr ""
 
@@ -105,7 +101,7 @@ msgstr ""
 msgid "Midori doesn't store any personal data:"
 msgstr ""
 
-#: ../core/app.vala:502
+#: ../core/app.vala:503
 #, c-format
 msgid "Unexpected action '%s'."
 msgstr ""
@@ -118,17 +114,17 @@ msgstr ""
 msgid "Increase the zoom level"
 msgstr ""
 
-#: ../core/browser.vala:710 ../ui/shortcuts.ui.h:15
+#: ../core/browser.vala:746 ../ui/shortcuts.ui.h:15
 msgid "Toggle text cursor navigation"
 msgstr ""
 
-#: ../core/browser.vala:711
+#: ../core/browser.vala:747
 msgid ""
 "Pressing F7 toggles Caret Browsing. When active, a text cursor appears in "
 "all websites."
 msgstr ""
 
-#: ../core/browser.vala:712
+#: ../core/browser.vala:748
 msgid "_Enable Caret Browsing"
 msgstr ""
 
@@ -190,7 +186,7 @@ msgstr ""
 
 #: ../core/preferences.vala:110 ../core/preferences.vala:126
 #: ../core/preferences.vala:148 ../core/preferences.vala:155
-#: ../extensions/session.vala:377 ../ui/shortcuts.ui.h:9
+#: ../extensions/session.vala:381 ../ui/shortcuts.ui.h:9
 msgid "Browsing"
 msgstr ""
 
@@ -214,7 +210,7 @@ msgstr ""
 msgid "Customize Toolbar"
 msgstr ""
 
-#: ../core/preferences.vala:151 ../extensions/session.vala:371
+#: ../core/preferences.vala:151 ../extensions/session.vala:375
 msgid "Show Homepage"
 msgstr ""
 
@@ -283,84 +279,84 @@ msgstr ""
 msgid "Extensions"
 msgstr ""
 
-#: ../core/tab.vala:182
+#: ../core/tab.vala:197
 #, c-format
 msgid "Oops - %s"
 msgstr ""
 
-#: ../core/tab.vala:182 ../core/tab.vala:188
+#: ../core/tab.vala:197 ../core/tab.vala:203
 #, c-format
 msgid "Something went wrong with '%s'."
 msgstr ""
 
-#: ../core/tab.vala:188 ../ui/urlbar.ui.h:1
+#: ../core/tab.vala:203 ../ui/urlbar.ui.h:1
 msgid "Security unknown"
 msgstr ""
 
-#: ../core/tab.vala:221
+#: ../core/tab.vala:236
 msgid "You are not connected to a network"
 msgstr ""
 
-#: ../core/tab.vala:222
+#: ../core/tab.vala:237
 #, c-format
 msgid ""
 "Your computer must be connected to a network to reach “%s”. Connect to a "
 "wireless access point or attach a network cable and try again."
 msgstr ""
 
-#: ../core/tab.vala:227
+#: ../core/tab.vala:242
 msgid "Midori can't find the page you're looking for"
 msgstr ""
 
-#: ../core/tab.vala:228
+#: ../core/tab.vala:243
 #, c-format
 msgid ""
 "The page located at “%s” cannot be found. Check the web address for "
 "misspelled words and try again."
 msgstr ""
 
-#: ../core/tab.vala:231
+#: ../core/tab.vala:246
 msgid "You are not connected to the Internet"
 msgstr ""
 
-#: ../core/tab.vala:232
+#: ../core/tab.vala:247
 #, c-format
 msgid ""
 "Your computer appears to be connected to a network, but can't reach “%s”. "
 "Check your network settings and try again."
 msgstr ""
 
-#: ../core/tab.vala:252
+#: ../core/tab.vala:267
 msgid "Try Again"
 msgstr ""
 
-#: ../core/tab.vala:287
+#: ../core/tab.vala:302
 msgid "Open Link in New _Tab"
 msgstr ""
 
-#: ../core/tab.vala:288
+#: ../core/tab.vala:303
 msgid "Open Link in New _Window"
 msgstr ""
 
-#: ../core/tab.vala:303
+#: ../core/tab.vala:318
 msgid "Save I_mage"
 msgstr ""
 
-#: ../core/tab.vala:318
+#: ../core/tab.vala:333
 #, c-format
 msgid "Search for %s"
 msgstr ""
 
-#: ../core/tab.vala:352 ../core/tab.vala:356 ../ui/tab.ui.h:1
+#: ../core/tab.vala:367 ../core/tab.vala:371 ../ui/tab.ui.h:1
 msgid "_Confirm"
 msgstr ""
 
-#: ../core/tab.vala:384
+#: ../core/tab.vala:399
 #, c-format
 msgid "%s wants to know your location."
 msgstr ""
 
-#: ../core/tab.vala:391
+#: ../core/tab.vala:406
 msgid "_Allow"
 msgstr ""
 
@@ -392,32 +388,32 @@ msgstr ""
 msgid "Enable Netscape plugins"
 msgstr ""
 
-#: ../extensions/session.vala:368
+#: ../extensions/session.vala:372
 msgid "Startup"
 msgstr ""
 
-#: ../extensions/session.vala:370
+#: ../extensions/session.vala:374
 msgid "Show Speed Dial"
 msgstr ""
 
-#: ../extensions/session.vala:372
+#: ../extensions/session.vala:376
 msgid "Show last open tabs"
 msgstr ""
 
-#: ../extensions/session.vala:374
+#: ../extensions/session.vala:378
 msgid "When Midori starts:"
 msgstr ""
 
-#: ../extensions/session.vala:390
+#: ../extensions/session.vala:394
 msgid "Last open _tabs"
 msgstr ""
 
 #: ../ui/about.ui.h:1
-msgid "2007-2019 Astian Foundation"
+msgid "2007-2019 Astian Foundation, 2022-2025 USTCLUG"
 msgstr ""
 
 #: ../ui/about.ui.h:3
-msgid "A lightweight web browser."
+msgid "A lightweight web browser, specially customized for USTC Library."
 msgstr ""
 
 #: ../ui/about.ui.h:4

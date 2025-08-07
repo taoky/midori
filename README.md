@@ -1,3 +1,11 @@
+**Please note that this Midori build is specifically for USTC Library (LIIMS) environment, and might not suitable for general use.**
+
+See <https://github.com/taoky/midori/releases/tag/220222_sfs> for a complete modification list.
+
+Original README:
+
+---
+
 [![CircleCI](https://circleci.com/gh/midori-browser/core.svg?style=svg)](https://circleci.com/gh/midori-browser/core)
 [![FlatHub](https://img.shields.io/badge/FlatHub-gray.svg)](https://flathub.org/apps/details/org.midori_browser.Midori)
 [![Telegram](https://img.shields.io/badge/Telegram-Chat-gray.svg?style=flat&logo=telegram&colorA=5583a4&logoColor=fff)](https://www.midori-browser.org/telegram)

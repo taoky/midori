@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: midori\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-29 10:35+0800\n"
+"POT-Creation-Date: 2025-08-08 00:08+0800\n"
 "PO-Revision-Date: 2021-12-29 10:35+0800\n"
 "Last-Translator: Keyu Tao <taoky@mail.ustc.edu.cn>\n"
 "Language-Team: Chinese (Simplified) <xfce-i18n-cn@xfce.org>\n"
@@ -46,10 +46,6 @@ msgstr "互联网；WWW；浏览器"
 msgid "New Private Browsing Window"
 msgstr "新建私人浏览窗口"
 
-#: ../core/about.vala:20
-msgid "_Report a Problem…"
-msgstr "报告问题(_R)…"
-
 #: ../core/app.vala:29
 msgid "Run ADDRESS as a web application"
 msgstr "将‘地址’作为网络应用程序运行"
@@ -82,7 +78,7 @@ msgstr "私人浏览，未保存任何更改"
 msgid "Display version number"
 msgstr "显示版本号"
 
-#: ../core/app.vala:214 ../core/tab.vala:93
+#: ../core/app.vala:214 ../core/tab.vala:91
 msgid "Speed Dial"
 msgstr "快速拨号"
 
@@ -110,7 +106,7 @@ msgstr "私人浏览"
 msgid "Midori doesn't store any personal data:"
 msgstr "Midori 没有存储任何个人数据："
 
-#: ../core/app.vala:502
+#: ../core/app.vala:503
 #, c-format
 msgid "Unexpected action '%s'."
 msgstr "意外的动作 ‘%s’。"
@@ -123,17 +119,17 @@ msgstr "减小缩放等级"
 msgid "Increase the zoom level"
 msgstr "增加缩放等级"
 
-#: ../core/browser.vala:710 ../ui/shortcuts.ui.h:15
+#: ../core/browser.vala:746 ../ui/shortcuts.ui.h:15
 msgid "Toggle text cursor navigation"
 msgstr "切换文字光标导航"
 
-#: ../core/browser.vala:711
+#: ../core/browser.vala:747
 msgid ""
 "Pressing F7 toggles Caret Browsing. When active, a text cursor appears in "
 "all websites."
 msgstr "按下 F7 切换光标浏览。激活时，所有网页上都将出现一个文字光标。"
 
-#: ../core/browser.vala:712
+#: ../core/browser.vala:748
 msgid "_Enable Caret Browsing"
 msgstr "光标浏览(_E)"
 
@@ -195,7 +191,7 @@ msgstr "启用脚本"
 
 #: ../core/preferences.vala:110 ../core/preferences.vala:126
 #: ../core/preferences.vala:148 ../core/preferences.vala:155
-#: ../extensions/session.vala:377 ../ui/shortcuts.ui.h:9
+#: ../extensions/session.vala:381 ../ui/shortcuts.ui.h:9
 msgid "Browsing"
 msgstr "浏览"
 
@@ -219,7 +215,7 @@ msgstr "标签上有关闭按钮"
 msgid "Customize Toolbar"
 msgstr "自定义工具栏"
 
-#: ../core/preferences.vala:151 ../extensions/session.vala:371
+#: ../core/preferences.vala:151 ../extensions/session.vala:375
 msgid "Show Homepage"
 msgstr "显示主页"
 
@@ -288,84 +284,84 @@ msgstr "最长历史保存天数"
 msgid "Extensions"
 msgstr "扩展"
 
-#: ../core/tab.vala:182
+#: ../core/tab.vala:197
 #, c-format
 msgid "Oops - %s"
 msgstr "唉呀 - %s"
 
-#: ../core/tab.vala:182 ../core/tab.vala:188
+#: ../core/tab.vala:197 ../core/tab.vala:203
 #, c-format
 msgid "Something went wrong with '%s'."
 msgstr "‘%s’ 中出错了。"
 
-#: ../core/tab.vala:188 ../ui/urlbar.ui.h:1
+#: ../core/tab.vala:203 ../ui/urlbar.ui.h:1
 msgid "Security unknown"
 msgstr "安全性未知"
 
-#: ../core/tab.vala:221
+#: ../core/tab.vala:236
 msgid "You are not connected to a network"
 msgstr "您尚未连接网络"
 
-#: ../core/tab.vala:222
+#: ../core/tab.vala:237
 #, c-format
 msgid ""
 "Your computer must be connected to a network to reach “%s”. Connect to a "
 "wireless access point or attach a network cable and try again."
 msgstr "您的电脑必须接入网络才能访问 “%s”，请连接无线网络或插入网线后重试。"
 
-#: ../core/tab.vala:227
+#: ../core/tab.vala:242
 msgid "Midori can't find the page you're looking for"
 msgstr "Midori 找不到您想要的网页"
 
-#: ../core/tab.vala:228
+#: ../core/tab.vala:243
 #, c-format
 msgid ""
 "The page located at “%s” cannot be found. Check the web address for "
 "misspelled words and try again."
 msgstr "找不到位于 “%s” 的网页。请检查网址是否有误后重试。"
 
-#: ../core/tab.vala:231
+#: ../core/tab.vala:246
 msgid "You are not connected to the Internet"
 msgstr "您尚未连接互联网"
 
-#: ../core/tab.vala:232
+#: ../core/tab.vala:247
 #, c-format
 msgid ""
 "Your computer appears to be connected to a network, but can't reach “%s”. "
 "Check your network settings and try again."
 msgstr "您的电脑似乎已接入网络，但无法访问 “%s”，请检查您的网络设置后重试。"
 
-#: ../core/tab.vala:252
+#: ../core/tab.vala:267
 msgid "Try Again"
 msgstr "重试"
 
-#: ../core/tab.vala:287
+#: ../core/tab.vala:302
 msgid "Open Link in New _Tab"
 msgstr "在新标签中打开链接(_T)"
 
-#: ../core/tab.vala:288
+#: ../core/tab.vala:303
 msgid "Open Link in New _Window"
 msgstr "在新窗口中打开链接(_W)"
 
-#: ../core/tab.vala:303
+#: ../core/tab.vala:318
 msgid "Save I_mage"
 msgstr "保存图片(_M)"
 
-#: ../core/tab.vala:318
+#: ../core/tab.vala:333
 #, c-format
 msgid "Search for %s"
 msgstr "搜索 %s"
 
-#: ../core/tab.vala:352 ../core/tab.vala:356 ../ui/tab.ui.h:1
+#: ../core/tab.vala:367 ../core/tab.vala:371 ../ui/tab.ui.h:1
 msgid "_Confirm"
 msgstr "确认(_C)"
 
-#: ../core/tab.vala:384
+#: ../core/tab.vala:399
 #, c-format
 msgid "%s wants to know your location."
 msgstr "%s 要获知您的位置。"
 
-#: ../core/tab.vala:391
+#: ../core/tab.vala:406
 msgid "_Allow"
 msgstr "允许(_A)"
 
@@ -399,33 +395,33 @@ msgstr "自动载入图片"
 msgid "Enable Netscape plugins"
 msgstr "启用 Netscape 插件"
 
-#: ../extensions/session.vala:368
+#: ../extensions/session.vala:372
 msgid "Startup"
 msgstr "启动"
 
-#: ../extensions/session.vala:370
+#: ../extensions/session.vala:374
 msgid "Show Speed Dial"
 msgstr "显示快速拨号"
 
-#: ../extensions/session.vala:372
+#: ../extensions/session.vala:376
 msgid "Show last open tabs"
 msgstr "显示上次打开的标签"
 
-#: ../extensions/session.vala:374
+#: ../extensions/session.vala:378
 msgid "When Midori starts:"
 msgstr "Midori 启动时："
 
-#: ../extensions/session.vala:390
+#: ../extensions/session.vala:394
 msgid "Last open _tabs"
 msgstr "上次打开的标签(_T)"
 
 #: ../ui/about.ui.h:1
-msgid "2007-2019 Astian Foundation"
+msgid "2007-2019 Astian Foundation, 2022-2025 USTCLUG"
 msgstr ""
 
 #: ../ui/about.ui.h:3
-msgid "A lightweight web browser."
-msgstr "轻量级的网络浏览器。"
+msgid "A lightweight web browser, specially customized for USTC Library."
+msgstr "轻量级的网络浏览器，为中国科大图书馆图书查询机定制。"
 
 #: ../ui/about.ui.h:4
 msgid "translator-credits"
@@ -686,6 +682,12 @@ msgstr "信任此网站(_T)"
 #: ../ui/urlbar.ui.h:3
 msgid "Search or enter an address"
 msgstr "搜索或输入网址"
+
+#~ msgid "_Report a Problem…"
+#~ msgstr "报告问题(_R)…"
+
+#~ msgid "A lightweight web browser."
+#~ msgstr "轻量级的网络浏览器。"
 
 #~ msgid "Midori Private Browsing"
 #~ msgstr "Midori 私人浏览"
@@ -2398,8 +2400,8 @@ msgstr "搜索或输入网址"
 #~ msgstr "仅限于第二阶乘"
 
 #~ msgid ""
-#~ "Reduce each domain to its second-level (e.g. www.example.org to example."
-#~ "org) for comparison"
+#~ "Reduce each domain to its second-level (e.g. www.example.org to "
+#~ "example.org) for comparison"
 #~ msgstr "将域名降为其二级域名以作比较"
 
 #~ msgid "Unknown domain policy"

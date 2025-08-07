@@ -17,12 +17,6 @@ namespace Midori {
                    logo_icon_name: Config.PROJECT_DOMAIN,
                    website: Config.PROJECT_WEBSITE,
                    version: Config.CORE_VERSION);
-           var report = add_button (_("_Report a Problem…"), Gtk.ResponseType.HELP) as Gtk.Button;
-           report.clicked.connect (() => {
-               var files = new File[1];
-               files[0] = File.new_for_uri (Config.PROJECT_BUGS);
-               Application.get_default ().open (files, "");
-           });
         }
     }
 }
